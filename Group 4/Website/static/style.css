@@ -14,7 +14,7 @@ body {
 /* styles for index page */
 a {
     text-decoration: none;
-    color: #000;
+    color: #464343;;
 }
 
 .heading-text {
@@ -25,6 +25,7 @@ a {
     height: 100vh;
     position: relative;
     z-index: 1;
+    text-align: center;
 }
 
 .heading-text h1 {
@@ -33,13 +34,17 @@ a {
     margin: 10px;
     box-shadow: 2px 2px 2px 2px #ccc;
     width: 70%;
-    color: #000;
+    color: #464343;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 30px;
     border-radius: 10px;
     background-color: #fff;
+}
+
+.landing-page{
+    overflow: hidden;
 }
 
 .start-button-container {
@@ -64,11 +69,8 @@ a {
 .start-button:hover {
     background-color: #eee7e7;
     cursor: pointer;
+    color: black;
     transform: scale(0.95);
-}
-
-.landing-page{
-    overflow: hidden;
 }
 
 /* styles for main page */
@@ -92,17 +94,18 @@ h1 {
 	line-height: 50px;
 }
 
-p {
+p, ul {
 	font-size: 15px;
 	opacity: 0.8;
 }
+
 
 .box {
 	background-color: #fff;
 	border-radius: 5px;
 	box-shadow: 0 6px rgba(0, 0, 0, 0.2);
 	padding: 30px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	text-align: center;
 }
 
@@ -112,12 +115,13 @@ p {
 
 .box-blue {
 	background-color: hsl(248, 32%, 49%);
-	padding: 20px;
+	padding: 10px;
 }
 
 .form-control {
 	position: relative;
 	margin-bottom: 30px;
+    display: flex;
 }
 
 .form-control small {
@@ -130,15 +134,38 @@ p {
 	text-align: right;
 }
 
+label{
+    color: black;
+    margin-right: 20px;
+    flex: 10px;
+}
+
+select {
+    border-radius: 5px;
+    border: 1.3px solid hsl(246, 25%, 77%);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px;
+    display: block;
+    height: 70%;
+    width: 65%;
+}
+
+.form-control.error select {
+    border-color: hsl(0, 100%, 74%);
+    color: hsl(0, 100%, 74%);
+}
+
 input {
 	border-radius: 5px;
 	border: 1.3px solid hsl(246, 25%, 77%);
 	font-family: 'Poppins', sans-serif;
 	font-size: 14px;
 	font-weight: 500;
-	padding: 15px 25px;
+	padding: 10px 10px;
 	display: block;
-	width: 100%;
+	width: 65%;
 }
 
 .form-control.error input {

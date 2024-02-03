@@ -1,38 +1,31 @@
-const form = document.getElementById('form');
+// error handling...
+const form = document.getElementById('beamForm');
 
 form.addEventListener('submit', e => {
 	e.preventDefault();
 
-	const typeofbeam = form['typeofbeam'].value;
-	const reactions = form['reactions'].value;
-	const supports = form['supports'].value;
-	const moments = form['moments'].value;
+	const numSupports = form['numSupports'].value;
+	const numJoints = form['numJoints'].value;
+	const numSpans = form['numSpans'].value;
 
-	if (typeofbeam === '') {
-		addErrorTo('typeofbeam', 'Type of Beam is required');
+	if (numSupports === '') {
+		addErrorTo('numSupports', 'Number of supports is required');
 	} else {
-		removeErrorFrom('typeofbeam');
+		removeErrorFrom('numSpans');
 	}
 
-	if (reactions === '') {
-		addErrorTo('reactions', 'Number of Reactions is required');
+	if (numJoints === '') {
+		addErrorTo('numJoints', 'Number of Joints is required');
 	} else {
-		removeErrorFrom('reactions');
+		removeErrorFrom('numJoints');
 	}
 
-	if (supports === '') {
-		addErrorTo('supports', 'Number of Supports is required');
-	} else if (!isValid(supports)) {
-		addErrorTo('supports', 'Number of Supports is not valid');
+	if (numSpans === '') {
+		addErrorTo('numSpans', 'Number of Spans is required');
 	} else {
-		removeErrorFrom('supports');
+		removeErrorFrom('numSpans');
 	}
 
-	if (moments === '') {
-		addErrorTo('moments', 'Moments is required');
-	} else {
-		removeErrorFrom('moments');
-	}
 });
 
 function addErrorTo(field, message) {

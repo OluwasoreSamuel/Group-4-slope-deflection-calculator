@@ -3,19 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- displays site properly based on user's device -->
-
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="../images/favicon-32x32.png"
-    />
-
-    <title>Slope Deflection Analysis Tool</title>
-
+    <title>Slope Deflection Analysis</title>
     <link rel="stylesheet" href="../static/style.css" />
   </head>
+
   <body id="main-page">
     <div class="container">
       <div>
@@ -36,42 +27,83 @@
           </p>
         </div>
 
-        <form class="box" id="form">
-          <div class="form-control">
-            <input type="text" id="typeofbeam" placeholder="Type of Beam" />
-            <img src="../images/icon-error.svg" alt="error-icon" />
-            <small></small>
-          </div>
-          <div class="form-control">
-            <input
-              type="text"
-              id="reactions"
-              placeholder="Number of Reactions"
-            />
-            <img src="../images/icon-error.svg" alt="error-icon" />
-            <small></small>
-          </div>
-          <div class="form-control">
-            <input
-              type="supports"
-              id="supports"
-              placeholder="Number of Supports"
-            />
-            <img src="../images/icon-error.svg" alt="error-icon" />
-            <small></small>
-          </div>
-          <div class="form-control">
-            <input type="moments" id="moments" placeholder="Moments" />
-            <img src="../images/icon-error.svg" alt="error-icon" />
-            <small></small>
-          </div>
-
-          <button>Calculate</button>
-          <small>
-            Kindly be patient while the beam is analyzed.
-            <a href="./index.html"> Go home...</a>
-          </small>
-        </form>
+        <form class="box" id="beamForm">
+            <div class="form-control">
+              <label for="numSupports">Supports:</label>
+              <input
+                type="number"
+                id="numSupports"
+                placeholder="Number of supports?"
+                min="0"
+                max="15"
+              />
+              <img src="../images/icon-error.svg" alt="error-icon" />
+              <small></small>
+            </div>
+          
+            <div class="form-control">
+              <label for="numJoints">Internal Joints:</label>
+              <input
+                type="number"
+                id="numJoints"
+                placeholder="Number of joints?"
+                min="0"
+                max="10"
+              />
+              <img src="../images/icon-error.svg" alt="error-icon" />
+              <small></small>
+            </div>
+          
+            <div class="form-control">
+              <label for="numSpans">Spans:</label>
+              <input
+                type="number"
+                id="numSpans"
+                placeholder="Number of spans?"
+                min="0"
+                max="10"
+              />
+              <img src="../images/icon-error.svg" alt="error-icon" />
+              <small></small>
+            </div>
+          
+            <div class="form-control">
+              <label for="settlement">Settlements?</label>
+              <select id="settlement" name="settlement">
+                <option value="yes">Yes</option>
+                <option value="no" selected>No</option>
+              </select>
+              <img src="../images/icon-error.svg" alt="error-icon" />
+              <small></small>
+            </div>
+          
+            <div class="form-control">
+              <label for="firstNodeFixed">First node fixed?</label>
+              <select id="firstNodeFixed" name="firstNodeFixed">
+                <option value="yes">Yes</option>
+                <option value="no" selected>No</option>
+              </select>
+              <img src="../images/icon-error.svg" alt="error-icon" />
+              <small></small>
+            </div>
+          
+            <div class="form-control">
+              <label for="lastNodeFixed">Last node fixed?</label>
+              <select id="lastNodeFixed" name="lastNodeFixed">
+                <option value="yes">Yes</option>
+                <option value="no" selected>No</option>
+              </select>
+              <img src="../images/icon-error.svg" alt="error-icon" />
+              <small></small>
+            </div>
+          
+            <button type="submit">Calculate</button>
+            <small>
+              Kindly be patient while the beam is analyzed or
+              <a href="./index.html"> go home..</a>
+            </small>
+          </form>
+          
       </div>
     </div>
 
