@@ -171,7 +171,7 @@ small a {
 }
 
 /* styles for index page */
-a{
+a {
     text-decoration: none;
     color: #000;
 }
@@ -187,31 +187,36 @@ a{
 }
 
 .heading-text h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 700;
     margin: 10px;
     box-shadow: 2px 2px 2px 2px #ccc;
     width: 70%;
-    color:#000;
+    color: #000;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 10px;
+    padding: 30px;
     border-radius: 10px;
     background-color: #fff;
+}
+
+.start-button-container {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .start-button {
     padding: 10px;
     border-radius: 10px;
     background-color: #fff;
-    font-size: 18px;
+    width: 200px;
     font-weight: 800;
     border: 1px solid #ccc;
     margin: 10px;
     box-shadow: 2px 2px 2px 2px #ccc;
-    align-items: center;
-    justify-content: center;
     transition: background-color 0.3s, transform 0.3s;
 }
 
@@ -219,4 +224,6 @@ a{
     background-color: #eee7e7;
     cursor: pointer;
     transform: scale(0.95);
+}
+
 }
