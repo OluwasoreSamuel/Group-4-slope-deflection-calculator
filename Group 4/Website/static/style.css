@@ -6,7 +6,7 @@
 
 body {
 	background-color: rgb(54, 53, 53);
-	background-image: url('../images/bg-intro-desktop.png');
+	background-image: url('../static/bg-intro-desktop.png');
 	color: #fff;
 	font-family: 'Poppins', sans-serif;
 }

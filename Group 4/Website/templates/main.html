@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Slope Deflection Analysis</title>
-    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" />
   </head>
 
   <body id="main-page">
@@ -37,7 +37,7 @@
                 min="0"
                 max="15"
               />
-              <img src="../images/icon-error.svg" alt="error-icon" />
+              <img src="{{ url_for('static', filename='icon-error.svg')}}" alt="error-icon" />
               <small></small>
             </div>
           
@@ -50,7 +50,7 @@
                 min="0"
                 max="10"
               />
-              <img src="../images/icon-error.svg" alt="error-icon" />
+              <img src="{{ url_for('static', filename='icon-error.svg')}}"  alt="error-icon" />
               <small></small>
             </div>
           
@@ -63,7 +63,7 @@
                 min="0"
                 max="10"
               />
-              <img src="../images/icon-error.svg" alt="error-icon" />
+              <img src="{{ url_for('static', filename='icon-error.svg')}}" alt="error-icon" />
               <small></small>
             </div>
           
@@ -73,7 +73,7 @@
                 <option value="yes">Yes</option>
                 <option value="no" selected>No</option>
               </select>
-              <img src="../images/icon-error.svg" alt="error-icon" />
+              <img src="{{ url_for('static', filename='icon-error.svg')}}"  alt="error-icon" />
               <small></small>
             </div>
           
@@ -83,7 +83,7 @@
                 <option value="yes">Yes</option>
                 <option value="no" selected>No</option>
               </select>
-              <img src="../images/icon-error.svg" alt="error-icon" />
+              <img src="{{ url_for('static', filename='icon-error.svg')}}"  alt="error-icon" />
               <small></small>
             </div>
           
@@ -93,20 +93,21 @@
                 <option value="yes">Yes</option>
                 <option value="no" selected>No</option>
               </select>
-              <img src="../images/icon-error.svg" alt="error-icon" />
+              <img src="{{ url_for('static', filename='icon-error.svg')}}"  alt="error-icon" />
               <small></small>
             </div>
           
             <button type="submit">Calculate</button>
             <small>
               Kindly be patient while the beam is analyzed or
-              <a href="./index.html"> go home..</a>
+              <a href="{{url_for('homepage')}}"> go home..</a>
             </small>
           </form>
           
       </div>
     </div>
 
-    <script src="../static/script.js"></script>
+    <script src="{{ url_for('static', filename='script.js')}}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" />
   </body>
 </html>
