@@ -1,8 +1,17 @@
-# Group-4-slope-deflection-calculator
-Slope Deflection Calculator
+# Structural Analysis Tool
 
-## Bolupe
-- Please go into the index.html file located in template for and start you design for the calculator app itself
+## Overview
+![Screenshot 1](/Group%204/Website/images/Preview%201.png)
 
-## Yetunde
-- I created an home.html file also in the template folder to Have a bold written "SLOPE-DEFLECTION BY GROUP 4" and at center showing a button to direct us to the index.html
+This project is a Structural Analysis Tool designed to solve indeterminate beams and frames using the slope deflection method. The slope deflection method is a powerful technique in structural engineering for analyzing and determining internal forces and deformations in statically indeterminate structures.
+
+![Screenshot 2](/Group%204/Website/images/Preview%202.png)
+
+## Expected Features
+- **Interactive Input:** Allows users to input beam and frame properties, support conditions and loads interactively.
+
+- **Slope Deflection Analysis:** Utilizes the slope deflection method to analyze and solve statically indeterminate beams and frames.
+
+- **Visual Representation:** Generates visual representations of the analyzed structure, including bending moment diagrams and shear force diagrams.
+
+
