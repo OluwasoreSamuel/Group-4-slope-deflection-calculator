@@ -11,6 +11,66 @@ body {
 	font-family: 'Poppins', sans-serif;
 }
 
+/* styles for index page */
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.heading-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+.heading-text h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 10px;
+    box-shadow: 2px 2px 2px 2px #ccc;
+    width: 70%;
+    color: #000;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.start-button-container {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.start-button {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    width: 200px;
+    font-weight: 800;
+    border: 1px solid #ccc;
+    margin: 10px;
+    box-shadow: 2px 2px 2px 2px #ccc;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.start-button:hover {
+    background-color: #eee7e7;
+    cursor: pointer;
+    transform: scale(0.95);
+}
+
+.landing-page{
+    overflow: hidden;
+}
+
 /* styles for main page */
 .container {
 	display: flex;
@@ -170,60 +230,3 @@ small a {
 	}
 }
 
-/* styles for index page */
-a {
-    text-decoration: none;
-    color: #000;
-}
-
-.heading-text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    position: relative;
-    z-index: 1;
-}
-
-.heading-text h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: 10px;
-    box-shadow: 2px 2px 2px 2px #ccc;
-    width: 70%;
-    color: #000;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 30px;
-    border-radius: 10px;
-    background-color: #fff;
-}
-
-.start-button-container {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.start-button {
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #fff;
-    width: 200px;
-    font-weight: 800;
-    border: 1px solid #ccc;
-    margin: 10px;
-    box-shadow: 2px 2px 2px 2px #ccc;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.start-button:hover {
-    background-color: #eee7e7;
-    cursor: pointer;
-    transform: scale(0.95);
-}
-
-}
