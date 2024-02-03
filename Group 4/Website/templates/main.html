@@ -1,72 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="32x32"
-			href="../images/favicon-32x32.png"
-		/>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../images/favicon-32x32.png"
+    />
 
-		<title>Slope Deflection Analysis Tool</title>
+    <title>Slope Deflection Analysis Tool</title>
 
-		<link rel="stylesheet" href="../static/style.css" />
-	</head>
-	<body id="main-page">
-		<div class="container">
-			<div>
-				<h1>
-					Analysis of Statically Indeterminate Beams
-					<br />
-					Using the Slope Deflection Method
-				</h1>
-				<p>
-					Moments and Reactions acting on different types of Indeterminate beams can be resolved using this slope deflection tool
-				</p>
-			</div>
-			<div>
-				<div class="box box-blue">
-					<p>
-						<strong>Fill out the input fields with details of Beam</strong>
-						
-					</p>
-				</div>
+    <link rel="stylesheet" href="../static/style.css" />
+  </head>
+  <body id="main-page">
+    <div class="container">
+      <div>
+        <h1>
+          Analysis of Statically Indeterminate Beams
+          <br />
+          Using the Slope Deflection Method
+        </h1>
+        <p>
+          Moments and Reactions acting on different types of Indeterminate beams
+          can be resolved using this slope deflection tool
+        </p>
+      </div>
+      <div>
+        <div class="box box-blue">
+          <p>
+            <strong>Fill out the input fields with details of Beam</strong>
+          </p>
+        </div>
 
-				<form class="box" id="form">
-					<div class="form-control">
-						<input type="text" id="firstname" placeholder="Type of Beam" />
-						<img src="../images/icon-error.svg" alt="error-icon" />
-						<small></small>
-					</div>
-					<div class="form-control">
-						<input type="text" id="lastname" placeholder="Number of Reactions" />
-						<img src="../images/icon-error.svg" alt="error-icon" />
-						<small></small>
-					</div>
-					<div class="form-control">
-						<input type="email" id="email" placeholder="Number of Supports" />
-						<img src="../images/icon-error.svg" alt="error-icon" />
-						<small></small>
-					</div>
-					<div class="form-control">
-						<input type="password" id="password" placeholder="Moments" />
-						<img src="../images/icon-error.svg" alt="error-icon" />
-						<small></small>
-					</div>
+        <form class="box" id="form">
+          <div class="form-control">
+            <input type="text" id="typeofbeam" placeholder="Type of Beam" />
+            <img src="../images/icon-error.svg" alt="error-icon" />
+            <small></small>
+          </div>
+          <div class="form-control">
+            <input
+              type="text"
+              id="reactions"
+              placeholder="Number of Reactions"
+            />
+            <img src="../images/icon-error.svg" alt="error-icon" />
+            <small></small>
+          </div>
+          <div class="form-control">
+            <input
+              type="supports"
+              id="supports"
+              placeholder="Number of Supports"
+            />
+            <img src="../images/icon-error.svg" alt="error-icon" />
+            <small></small>
+          </div>
+          <div class="form-control">
+            <input type="moments" id="moments" placeholder="Moments" />
+            <img src="../images/icon-error.svg" alt="error-icon" />
+            <small></small>
+          </div>
 
-					<button>Calculate</button>
-					<small>
-						Kindly be patient while the beam is analyzed.
-						<a href="./index.html"> Go home...</a>
-					</small>
-				</form>
-			</div>
-		</div>
+          <button>Calculate</button>
+          <small>
+            Kindly be patient while the beam is analyzed.
+            <a href="./index.html"> Go home...</a>
+          </small>
+        </form>
+      </div>
+    </div>
 
-		<script src="./script.js"></script>
-	</body>
+    <script src="../static/script.js"></script>
+  </body>
 </html>
