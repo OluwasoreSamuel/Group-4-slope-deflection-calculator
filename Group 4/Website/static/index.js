@@ -33,33 +33,39 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = 1; i <= numSpans; i++) {
       let spanDiv = document.createElement("div");
       spanDiv.innerHTML = `
-            <h3>Span ${i}</h3>
-            <label for="spanLength${i}">Length of Span ${i}:</label>
-            <input type="number" id="spanLength${i}" name="spanLength${i}" required><br>
+          <div class="form-control">
+              <h3>Span ${i}</h3>
+              <label for="spanLength${i}">Length of Span ${i}:</label>
+              <input type="number" id="spanLength${i}" name="spanLength${i}" class="styled-input" required>
+          </div>
   
-            <label for="loadingCondition${i}">Loading Condition on Span ${i}:</label>
-            <select type="text" id="loadingCondition${i}" name="loadingCondition${i}" onchange="updateLoadingCondition(${i})" required>
-              <option value="none">None</option>
-              <option value="P_C">Point load at center</option>
-              <option value="P_X">Point load at distance 'a' from left end and 'b' from the right end </option>
-              <option value="P_C_2">Two equal point loads, spaced at 1/3 of the total length from each other</option>
-              <option value="P_C_3">Three equal point loads, spaced at 1/4 of the total length from each other</option>
-              <option value="UDL">Uniformly distributed load over the whole length</option>
-              <option value="UDL/2_R">Uniformly distributed load over half of the span on the right side </option>
-              <option value="UDL/2_L">Uniformly distributed load over half of the span on the left side</option>
-              <option value="VDL_R">Variably distributed load, with highest point on the right end</option>
-              <option value="VDL_L">Variably distributed load, with highest point on the left end </option>
-              <option value="VDL_C">Variably distributed load, with highest point at the center</option>
-            </select>
+          <div class="form-control">
+              <label for="loadingCondition${i}">Loading Condition on Span ${i}:</label>
+              <select type="text" id="loadingCondition${i}" name="loadingCondition${i}" onchange="updateLoadingCondition(${i})" class="styled-select" required>
+                  <option value="none">None</option>
+                  <option value="P_C">Point load at center</option>
+                  <option value="P_X">Point load at distance 'a' from left end and 'b' from the right end </option>
+                  <option value="P_C_2">Two equal point loads, spaced at 1/3 of the total length from each other</option>
+                  <option value="P_C_3">Three equal point loads, spaced at 1/4 of the total length from each other</option>
+                  <option value="UDL">Uniformly distributed load over the whole length</option>
+                  <option value="UDL/2_R">Uniformly distributed load over half of the span on the right side </option>
+                  <option value="UDL/2_L">Uniformly distributed load over half of the span on the left side</option>
+                  <option value="VDL_R">Variably distributed load, with the highest point on the right end</option>
+                  <option value="VDL_L">Variably distributed load, with the highest point on the left end </option>
+                  <option value="VDL_C">Variably distributed load, with the highest point at the center</option>
+              </select>
+          </div>
   
-            <div id="additionalInputs${i}"></div>
-            <br>
+          <div id="additionalInputs${i}" class="styled-additional-inputs"></div>
   
-            <label for="magnitudeOfLoad${i}">Magnitude of Load on Span ${i}:</label>
-            <input type="number" id="magnitudeOfLoad${i}" name="magnitudeOfLoad${i}" required><br>
-        `;
+          <div class="form-control">
+              <label for="magnitudeOfLoad${i}">Magnitude of Load on Span ${i}:</label>
+              <input type="number" id="magnitudeOfLoad${i}" name="magnitudeOfLoad${i}" class="styled-input" required>
+          </div>
+      `;
       spanDetailsContainer.appendChild(spanDiv);
-    }
+  }
+  
   }
   
   function updateLoadingCondition(spanIndex) {
@@ -69,8 +75,10 @@ document.addEventListener("DOMContentLoaded", function () {
   
     if (selectedCondition === "P_X") {
       additionalInputsContainer.innerHTML = `
+             <div class="form-control">
             <label for="spanALength${spanIndex}">Distance from point load to the left end joint (Span A Length):</label>
-            <input type="number" id="spanALength${spanIndex}" name="spanALength${spanIndex}" required><br>
+            <input type="number" id="spanALength${spanIndex}" name="spanALength${spanIndex}" required>
+            </div>
         `;
     }
   }

@@ -33,7 +33,7 @@ a {
     font-weight: 700;
     margin: 10px;
     box-shadow: 2px 2px 2px 2px #ccc;
-    width: 70%;
+    width: 60%;
     color: #464343;
     align-items: center;
     justify-content: center;
@@ -79,7 +79,7 @@ a {
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
-	max-width: 1200px;
+	max-width: 1500px;
 	margin: 0 auto;
 	min-height: 100vh;
 }
@@ -260,3 +260,4 @@ small a {
 #results {
 	color: black !important;
 }
+
