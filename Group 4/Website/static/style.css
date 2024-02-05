@@ -261,3 +261,30 @@ small a {
 	color: black !important;
 }
 
+/* Add this CSS for basic table stylings */
+.all-results-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.all-results-table th, .all-results-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.all-results-table th {
+    background-color: #f2f2f2;
+}
+
+/* Optional: Add some spacing between table cells */
+.all-results-table td {
+    margin: 2px;
+}
+
+/* Optional: Add some styling for the table headers */
+.all-results-table th {
+    background-color: hsl(154, 59%, 51%);
+    color: white;
+}
