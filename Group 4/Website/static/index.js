@@ -247,12 +247,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   
   function displayBeamAnalysisResults(data) {
-    const resultsDiv = document.getElementById("results"); // Assuming you have a div with id="results"
+    const resultsDiv = document.getElementById("results"); 
     resultsDiv.innerHTML = ""; // Clear any existing content
 
     // Create a single table for all results
     const resultsTable = document.createElement("table");
-    resultsTable.classList.add("table", "all-results-table"); // Add basic table styling
+    resultsTable.classList.add("table", "all-results-table"); 
     resultsDiv.appendChild(resultsTable);
 
     // Create table headers
@@ -331,89 +331,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 }
 
-
-
-
-
-//   function displayBeamAnalysisResults(data) {
-//     const resultsDiv = document.getElementById("results"); // Assuming you have a div with id="results"
-//     resultsDiv.innerHTML = ""; // Clear any existing content
-
-//     // Display equations
-//     const equationsList = document.createElement("ul");
-//     resultsDiv.appendChild(equationsList);
-//     for (const equation of data.equation) {
-//       const equationItem = document.createElement("li");
-//       equationItem.textContent = equation;
-//       equationsList.appendChild(equationItem);
-//     }
-
-//     // Display equation solutions
-//     const solutionsTable = document.createElement("table");
-//     solutionsTable.classList.add("table"); // Add basic table styling
-//     resultsDiv.appendChild(solutionsTable);
-//     const tableHead = document.createElement("thead");
-//     solutionsTable.appendChild(tableHead);
-//     const tableHeadRow = document.createElement("tr");
-//     tableHead.appendChild(tableHeadRow);
-//     const headerCell1 = document.createElement("th");
-//     headerCell1.textContent = "Moment Label";
-//     tableHeadRow.appendChild(headerCell1);
-//     const headerCell2 = document.createElement("th");
-//     headerCell2.textContent = "Solution";
-//     tableHeadRow.appendChild(headerCell2);
-//     const tableBody = document.createElement("tbody");
-//     solutionsTable.appendChild(tableBody);
-
-//     // Include the missing loop for moment labels and solutions
-//     for (const [label, solution] of Object.entries(data.equationSolution)) {
-//       const tableRow = document.createElement("tr");
-//       tableBody.appendChild(tableRow);
-//       const cell1 = document.createElement("td");
-//       cell1.textContent = label;
-//       tableRow.appendChild(cell1);
-//       const cell2 = document.createElement("td");
-//       cell2.textContent = solution;
-//       tableRow.appendChild(cell2);
-//     }
-
-//     // Display moments, positions, and shear forces
-//     const tableData = document.createElement("table");
-//     tableData.classList.add("table"); // Add basic table styling
-//     resultsDiv.appendChild(tableData);
-//     const tableDataHead = document.createElement("thead");
-//     tableData.appendChild(tableDataHead);
-//     const tableDataHeadRow = document.createElement("tr");
-//     tableDataHead.appendChild(tableDataHeadRow);
-//     const dataHeader1 = document.createElement("th");
-//     dataHeader1.textContent = "Label";
-//     tableDataHeadRow.appendChild(dataHeader1);
-//     const dataHeader2 = document.createElement("th");
-//     dataHeader2.textContent = "Position";
-//     tableDataHeadRow.appendChild(dataHeader2);
-//     const dataHeader3 = document.createElement("th");
-//     dataHeader3.textContent = "Shear Force";
-//     tableDataHeadRow.appendChild(dataHeader3);
-//     const tableDataBody = document.createElement("tbody");
-//     tableData.appendChild(tableDataBody);
-
-//     for (let i = 0; i < data.listOfMoments.length; i++) {
-//       const tableDataRow = document.createElement("tr");
-//       tableDataBody.appendChild(tableDataRow);
-//       const dataCell1 = document.createElement("td");
-//       dataCell1.textContent = data.listOfMoments[i];
-//       tableDataRow.appendChild(dataCell1);
-//       const dataCell2 = document.createElement("td");
-//       dataCell2.textContent = data.position_along_beam[i];
-//       tableDataRow.appendChild(dataCell2);
-//       const dataCell3 = document.createElement("td");
-//       dataCell3.textContent = data.shear_forces[i];
-//       tableDataRow.appendChild(dataCell3);
-//     }
-// }
-
-
-  
   // Assuming you have the data received from your analysis logic
   const analysisData = {
     // ... your data from previous example
