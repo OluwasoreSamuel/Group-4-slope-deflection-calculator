@@ -68,6 +68,11 @@
               <img src="{{ url_for('static', filename='icon-error.svg')}}" alt="error-icon" />
               <small></small>
             </div>
+
+             <!-- Dynamic Span Information -->
+            <div id="spanDetails"></div>
+            <hr />
+
           
             <div class="form-control">
               <label for="settlement">Settlements?</label>
@@ -78,7 +83,9 @@
               <img src="{{ url_for('static', filename='icon-error.svg')}}"  alt="error-icon" />
               <small></small>
             </div>
-          
+            <div id="settlementDetails"></div>
+
+
             <div class="form-control">
               <label for="firstNodeFixed">First node fixed?</label>
               <select id="firstNodeFixed" name="firstNodeFixed">
@@ -99,7 +106,10 @@
               <small></small>
             </div>
           
-            <button type="submit">Calculate</button>
+
+            <!--  -->
+            <button type="submit" onclick="">Calculate</button>
+            <p></p>
             <small>
               Kindly be patient while the beam is analyzed or
               <a href="{{url_for('homepage')}}"> go home..</a>
