@@ -6,7 +6,7 @@
     <title>Slope Deflection Analysis</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.min.js"></script>
-    <script src="{{ url_for('static',filename='index.js') }}"></script>
+
   </head>
 
   <body id="main-page">
@@ -35,6 +35,7 @@
               <input
                 type="number"
                 id="numSupports"
+                value="0"
                 placeholder="Number of supports?"
                 min="0"
                 max="15"
@@ -114,12 +115,15 @@
               Kindly be patient while the beam is analyzed or
               <a href="{{url_for('homepage')}}"> go home..</a>
             </small>
+
+            <br />
+            <div id="results"></div>
           </form>
           
       </div>
     </div>
+    <script src="{{ url_for('static',filename='index.js') }}"></script>
 
-    <script src="{{ url_for('static', filename='script.js')}}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" />
   </body>
 </html>

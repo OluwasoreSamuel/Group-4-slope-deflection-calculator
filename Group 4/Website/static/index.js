@@ -152,115 +152,171 @@ document.addEventListener("DOMContentLoaded", function () {
           console.log(`No loading on span ${i + 1}`);
       }
     });
+  });
+
+
+  function extractBeamData() {
+    const data = {};
   
-    // Initialize the list of unknown end moments
-    let listOfEndMoments = [];
-    let leftEnd = "a";
-    let rightEnd = "b";
+    // Number inputs
+    data.numSupports = parseInt(document.getElementById("numSupports").value);
+    data.numJoints = parseInt(document.getElementById("numJoints").value);
+    data.numSpans = parseInt(document.getElementById("numSpans").value);
   
-    for (let i = 0; i < spans.length; i++) {
-      spans[i].leftMoment = math.parse(`M${leftEnd}${rightEnd}`);
-      spans[i].rightMoment = math.parse(`M${rightEnd}${leftEnd}`);
-      leftEnd = String.fromCharCode(leftEnd.charCodeAt(0) + 1);
-      rightEnd = String.fromCharCode(rightEnd.charCodeAt(0) + 1);
-      listOfEndMoments.push(spans[i].leftMoment);
-      listOfEndMoments.push(spans[i].rightMoment);
+    // Span details (assuming dynamic generation)
+    const spanInputs = document.getElementById("spanDetails").querySelectorAll(".span-input");
+    data.spans = [];
+    for (const input of spanInputs) {
+      const spanData = {
+        span_length: parseFloat(input.querySelector(".length").value),
+        load: parseFloat(input.querySelector(".load").value),
+        loading_condition: input.querySelector(".loading-condition").value,
+      };
+      data.spans.push(spanData);
     }
   
-    // Handle settlement on the beam
-    let settlementOnBeam = document.getElementById("settlement").value;
-    if (settlementOnBeam !== "yes") {
-      console.log("No settlement on beam");
-      nodes.forEach((node) => (node.settlement = 0));
-    } else {
-      let position = prompt("Input the first settlement position: ");
-      while (position !== "") {
-        settlementPositions.push(parseInt(position));
-        position = prompt("Input the next settlement position (leave empty to finish): ");
+    // Settlement (check selected option)
+    const settlementSelect = document.getElementById("settlement");
+    data.hasSettlement = settlementSelect.value === "yes";
+  
+    // Settlement details (if applicable)
+    if (data.hasSettlement) {
+      const settlementInputs = document.getElementById("settlementDetails").querySelectorAll(".settlement-input");
+      data.settlements = [];
+      for (const input of settlementInputs) {
+        const settlementData = {
+          position: parseInt(input.querySelector(".position").value),
+          value: parseFloat(input.querySelector(".value").value),
+        };
+        data.settlements.push(settlementData);
       }
-      nodes.forEach((node, index) => {
-        if (settlementPositions.includes(index)) {
-          node.settlement = parseInt(prompt(`Value of settlement at position ${index}?: `));
-        } else {
-          node.settlement = 0;
-        }
-      });
     }
   
-    // Calculating cord rotation for each span
-    spans.forEach((span, i) => {
-      span.cordRotation = (nodes[i + 1].settlement - nodes[i].settlement) / span.spanLength;
-    });
+    // Fixed ends (check selected options)
+    data.firstNodeFixed = document.getElementById("firstNodeFixed").value === "yes";
+    data.lastNodeFixed = document.getElementById("lastNodeFixed").value === "yes";
   
-    // Check if the first and last nodes are fixed
-    let firstNodeFixed = document.getElementById("firstNodeFixed");
-    let lastNodeFixed = document.getElementById("lastNodeFixed");
+    return data;
+  }
   
-    // Express the slope deflection equations for each span
-    let listOfSlopeDeflectionEquations = [];
+  // Add event listener to the calculate button
+  const calculateButton = document.querySelector("button[type='submit']");
+  calculateButton.addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent default form submission
   
-    spans.forEach((span, i) => {
-      if (i === 0 && firstNodeFixed === "no") {
-        span.leftSlopeDeflectionEquation = { equation: "0 = " + span.leftMoment.toString() };
-        span.rightSlopeDeflectionEquation = {
-          equation: `3 * (Theta_${i + 1} - ${span.cordRotation}) / ${span.spanLength} + ${span.rightFem} = ${
-            span.rightMoment
-          }`,
-        };
-      } else if (i === spans.length - 1 && lastNodeFixed === "no") {
-        span.leftSlopeDeflectionEquation = {
-          equation: `3 * (Theta_${i} - ${span.cordRotation}) / ${span.spanLength} + ${span.leftFem} = ${span.leftMoment}`,
-        };
-        span.rightSlopeDeflectionEquation = { equation: "0 = " + span.rightMoment.toString() };
-      } else {
-        span.leftSlopeDeflectionEquation = {
-          equation: `2 * (2 * Theta_${i} + Theta_${i + 1} - 3 * ${span.cordRotation}) / ${span.spanLength} + ${
-            span.leftFem
-          } = ${span.leftMoment}`,
-        };
-        span.rightSlopeDeflectionEquation = {
-          equation: `2 * (2 * Theta_${i + 1} + Theta_${i} - 3 * ${span.cordRotation}) / ${span.spanLength} + ${
-            span.rightFem
-          } = ${span.rightMoment}`,
-        };
-      }
-      listOfSlopeDeflectionEquations.push(span.leftSlopeDeflectionEquation);
-      listOfSlopeDeflectionEquations.push(span.rightSlopeDeflectionEquation);
-    });
-  
-    let listOfEquilibriumEquations = [];
-  nodes.forEach((node, i) => {
-      if (i !== 0 && i !== nodes.length - 1) {
-          node.equilibriumEquation = math.parse(`${spans[i - 1].rightMoment} + ${spans[i].leftMoment} = 0`);
-      } else {
-          node.equilibriumEquation = math.parse("0 = 0");
-      }
-      listOfEquilibriumEquations.push(node.equilibriumEquation);
+    const { numSupports, numJoints, spans, settlements, firstNodeFixed, lastNodeFixed, hasSettlement } = extractBeamData();
+    // Use the extracted data for your actual beam analysis here
+    // console.log("Beam data:", beamData);
+    const settlement_positions = settlements?.map(x => x.position) || [];
+    const settlement_values = settlements?.map(x => x.value) || [];
+
+    const payload = {
+      number_of_supports: numSupports,
+      number_of_internal_joints: numJoints,
+      span_data: spans,
+      "settlement_positions": settlement_positions,
+      "settlement_values": settlement_values, 
+      "settlement_on_beam": hasSettlement,
+      "first_node_fixed": firstNodeFixed,
+      "last_node_fixed": lastNodeFixed
+    }
+
+    callApi(payload);
+
+    // You might want to add logic to display results or handle errors here
   });
+
+
+  async function callApi(data) {
+    try {
+      const response = await fetch('http://127.0.0.1:5000/calculate', { method: 'POST', body: JSON.stringify(data), headers: { 'Content-Type': 'application/json'} });
+      const payload = await response.json();
+      console.log(payload);
+      displayBeamAnalysisResults(payload);
+    } catch (e) {
+      console.log(e);
+    }
+  }
   
-  // Assuming listOfSlopeDeflectionEquations, listOfEndMoments, listOfUnknownAngularDisplacements are defined
-  let equations = listOfSlopeDeflectionEquations.concat(listOfEquilibriumEquations);
-  let unknowns = listOfEndMoments.concat(listOfUnknownAngularDisplacements);
+
+  function displayBeamAnalysisResults(data) {
+    const resultsDiv = document.getElementById("results"); // Assuming you have a div with id="results"
+    resultsDiv.innerHTML = ""; // Clear any existing content
   
-  // Solving equations - This is a simplistic approach and might not work for complex systems
-  let solutions = {};
-  unknowns.forEach(unknown => {
-      // Simplify the process by just trying to solve each equation numerically
-      // This is a limitation as compared to sympy's symbolic solving
-      equations.forEach(eq => {
-          try {
-              let solution = math.solve(eq, unknown);
-              if (solution) {
-                  solutions[unknown] = solution;
-              }
-          } catch (error) {
-              console.log("Error solving equation:", error);
-          }
-      });
-  });
+    // Display equations
+    const equationsList = document.createElement("ul");
+    resultsDiv.appendChild(equationsList);
+    for (const equation of data.equation) {
+      const equationItem = document.createElement("li");
+      equationItem.textContent = equation;
+      equationsList.appendChild(equationItem);
+    }
   
-  console.log(equations);
-  console.log(solutions);
-  // Displaying specific solutions would depend on how the unknowns are defined
+    // Display equation solutions
+    const solutionsTable = document.createElement("table");
+    solutionsTable.classList.add("table"); // Add basic table styling
+    resultsDiv.appendChild(solutionsTable);
+    const tableHead = document.createElement("thead");
+    solutionsTable.appendChild(tableHead);
+    const tableHeadRow = document.createElement("tr");
+    tableHead.appendChild(tableHeadRow);
+    const headerCell1 = document.createElement("th");
+    headerCell1.textContent = "Moment Label";
+    tableHeadRow.appendChild(headerCell1);
+    const headerCell2 = document.createElement("th");
+    headerCell2.textContent = "Solution";
+    tableHeadRow.appendChild(headerCell2);
+    const tableBody = document.createElement("tbody");
+    solutionsTable.appendChild(tableBody);
+    for (const [label, solution] of Object.entries(data.equationSolution)) {
+      const tableRow = document.createElement("tr");
+      tableBody.appendChild(tableRow);
+      const cell1 = document.createElement("td");
+      cell1.textContent = label;
+      tableRow.appendChild(cell1);
+      const cell2 = document.createElement("td");
+      cell2.textContent = solution;
+      tableRow.appendChild(cell2);
+    }
   
-  });
+    // Display moments, positions, and shear forces
+    const tableData = document.createElement("table");
+    tableData.classList.add("table"); // Add basic table styling
+    resultsDiv.appendChild(tableData);
+    const tableDataHead = document.createElement("thead");
+    tableData.appendChild(tableDataHead);
+    const tableDataHeadRow = document.createElement("tr");
+    tableDataHead.appendChild(tableDataHeadRow);
+    const dataHeader1 = document.createElement("th");
+    dataHeader1.textContent = "Label";
+    tableDataHeadRow.appendChild(dataHeader1);
+    const dataHeader2 = document.createElement("th");
+    dataHeader2.textContent = "Position";
+    tableDataHeadRow.appendChild(dataHeader2);
+    const dataHeader3 = document.createElement("th");
+    dataHeader3.textContent = "Shear Force";
+    tableDataHeadRow.appendChild(dataHeader3);
+    const tableDataBody = document.createElement("tbody");
+    tableData.appendChild(tableDataBody);
+    for (let i = 0; i < data.listOfMoments.length; i++) {
+      const tableDataRow = document.createElement("tr");
+      tableDataBody.appendChild(tableDataRow);
+      const dataCell1 = document.createElement("td");
+      dataCell1.textContent = data.listOfMoments[i];
+      tableDataRow.appendChild(dataCell1);
+      const dataCell2 = document.createElement("td");
+      dataCell2.textContent = data.position_along_beam[i];
+      tableDataRow.appendChild(dataCell2);
+      const dataCell3 = document.createElement("td");
+      dataCell3.textContent = data.shear_forces[i];
+      tableDataRow.appendChild(dataCell3);
+    }
+  }
+  
+  // Assuming you have the data received from your analysis logic
+  const analysisData = {
+    // ... your data from previous example
+  };
+  
+
+  
