@@ -11,7 +11,7 @@ body {
 	font-family: 'Poppins', sans-serif;
 }
 
-/* styles for index page */
+/* styles for home page */
 a {
     text-decoration: none;
     color: #464343;;
@@ -73,7 +73,7 @@ a {
     transform: scale(0.95);
 }
 
-/* styles for main page */
+/* styles for calculator page */
 .container {
 	display: flex;
 	align-items: center;
@@ -243,25 +243,7 @@ small a {
 	text-decoration: none;
 }
 
-@media screen and (max-width: 768px) {
-	h1 {
-		text-align: center;
-	}
 
-	p {
-		text-align: center;
-	}
-
-	.container {
-		flex-direction: column;
-	}
-}
-
-#results {
-	color: black !important;
-}
-
-/* Add this CSS for basic table stylings */
 .all-results-table {
     border-collapse: collapse;
     width: 100%;
@@ -287,3 +269,22 @@ small a {
     background-color: hsl(154, 59%, 51%);
     color: white;
 }
+
+@media screen and (max-width: 768px) {
+	h1 {
+		text-align: center;
+	}
+
+	p {
+		text-align: center;
+	}
+
+	.container {
+		flex-direction: column;
+	}
+}
+
+#results {
+	color: black !important;
+}
+
