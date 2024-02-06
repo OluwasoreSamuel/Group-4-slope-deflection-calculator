@@ -1,6 +1,36 @@
 from sympy import symbols, Eq, solve
+from json import encoder
+encoder.FLOAT_REPR = lambda o: format(o, '.2f')
 
-from utilis import Span, Node
+
+
+class Node:
+    def __init__(self, settlement, angular_displacement, equilibrium_equation, node_reaction):
+        self.settlement = settlement
+        self.angular_displacement = angular_displacement
+        self.equilibrium_equation = equilibrium_equation
+        self.node_reaction = node_reaction
+
+
+
+# create a class to store the properties of each span, then create functions that will calculate each property
+class Span:
+    def __init__(self, left_fem, right_fem, span_length, load, loading_condition, cord_rotation, left_moment,
+                 right_moment, left_slope_deflection_equation, right_slope_deflection_equation,
+                 reaction_at_left_node_on_span, reaction_at_right_node_on_span, span_a_value):
+        self.left_fem = left_fem
+        self.right_fem = right_fem
+        self.span_length = span_length
+        self.load = load
+        self.loading_condition = loading_condition
+        self.cord_rotation = cord_rotation
+        self.left_moment = left_moment
+        self.right_moment = right_moment
+        self.left_slope_deflection_equation = left_slope_deflection_equation
+        self.right_slope_deflection_equation = right_slope_deflection_equation
+        self.reaction_at_left_node_on_span = reaction_at_left_node_on_span
+        self.reaction_at_right_node_on_span = reaction_at_right_node_on_span
+        self.span_a_value = span_a_value
 
 
 
@@ -40,9 +70,6 @@ def calculate_beam_properties(number_of_supports, number_of_internal_joints, spa
 
   left_fem_variable = 1
   right_fem_variable = 1
-  span_length_variable = 1
-  load_variable = 1
-  loading_condition_variable = ""
   cord_rotation_variable = 1
   left_moment_variable = 1
   right_moment_variable = 1
@@ -54,8 +81,8 @@ def calculate_beam_properties(number_of_supports, number_of_internal_joints, spa
 
   for i in range(number_of_spans):
     beam_spans.append("")
-    beam_spans[i] = Span(left_fem_variable, right_fem_variable, span_length_variable, load_variable,
-                          loading_condition_variable, cord_rotation_variable, left_moment_variable,
+    beam_spans[i] = Span(left_fem_variable, right_fem_variable, span_data[i]['span_length'], span_data[i]['load'],
+                          span_data[i]['loading_condition'], cord_rotation_variable, left_moment_variable,
                           right_moment_variable, left_slope_deflection_equation_variable,
                           right_slope_deflection_equation_variable, reaction_at_left_node_on_span_variable,
                           reaction_at_right_node_on_span_variable, span_a_value_variable)
@@ -77,10 +104,6 @@ def calculate_beam_properties(number_of_supports, number_of_internal_joints, spa
 
   length_of_beam = 0
   for i in range(number_of_spans):
-      # beam_spans[i].loading_condition = input(f"what is the nature of loading on span {i + 1}? ")
-      # beam_spans[i].span_length = int(input(f"what is the length of span {i + 1}? "))
-      # beam_spans[i].load = int(input(f"what is the magnitude of loading on the span {i + 1}? "))
-
       length_of_beam += beam_spans[i].span_length
 
       if beam_spans[i].loading_condition == 'P_C':
@@ -446,7 +469,8 @@ def calculate_beam_properties(number_of_supports, number_of_internal_joints, spa
   serializable_solution = {str(key): str(val) for key, val in solution.items()}
   serializable_list_of_moments = [str(moment) for moment in list_of_end_moments]
   serializable_equations =[str(equation) for equation in equations]
-  return { "shear_forces": shear_forces, "position_along_beam": position_along_beam, "equation": serializable_equations,  "equationSolution": serializable_solution, "listOfMoments": serializable_list_of_moments }
+  serializable_shear_force = [str(shear_force) for shear_force in shear_forces]
+  return { "shear_forces": serializable_shear_force, "position_along_beam": position_along_beam, "equation": serializable_equations,  "equationSolution": serializable_solution, "listOfMoments": serializable_list_of_moments }
 
   '''
       elif beam_spans[i].loading_condition == "VDL_C":
